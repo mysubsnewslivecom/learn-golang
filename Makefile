@@ -6,7 +6,7 @@ PROJECTNAME := $(shell basename "$(PWD)")
 
 # Go related variables.
 GOBASE := $(shell pwd)
-GOPATH := $(GOBASE)/vendor:$(GOBASE)
+GOPATH := $(GOBASE)/vendor:$(GOBASE):$(GOBASE)/src/
 GOBIN := $(GOBASE)/bin
 GOFILES := $(wildcard *.go)
 
@@ -94,7 +94,7 @@ go-compile: go-get go-build ## GO compile
 
 go-build: ## Build binary
 	$(LOG) "  >  Building binary..."
-	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) go build $(LDFLAGS) -o $(GOBIN)/$(PROJECTNAME) $(GOFILES)
+	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) go build $(LDFLAGS) -o $(GOBIN)/$(PROJECTNAME) $(GOBASE)/src/main/$(GOFILES)
 
 go-generate: ## Generate dependency files
 	$(LOG) "  >  Generating dependency files..."
