@@ -110,3 +110,7 @@ go-install: ## GO install
 go-clean: ## Clean build cache
 	$(LOG) "  >  Cleaning build cache"
 	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) go clean
+
+go-run: ## Go run
+	$(LOG) "  >  Go Run"
+	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) go run $(GOBASE)/src/
