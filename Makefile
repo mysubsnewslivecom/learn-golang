@@ -94,7 +94,7 @@ go-compile: go-get go-build ## GO compile
 
 go-build: ## Build binary
 	$(LOG) "  >  Building binary..."
-	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) go build $(LDFLAGS) -o $(GOBIN)/$(PROJECTNAME) $(GOBASE)/src/main/$(GOFILES)
+	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) go build $(LDFLAGS) -o $(GOBIN)/$(PROJECTNAME) $(GOBASE)/src/$(GOFILES)
 
 go-generate: ## Generate dependency files
 	$(LOG) "  >  Generating dependency files..."
@@ -110,3 +110,7 @@ go-install: ## GO install
 go-clean: ## Clean build cache
 	$(LOG) "  >  Cleaning build cache"
 	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) go clean
+
+go-run: ## Go run
+	$(LOG) "  >  Go Run"
+	@GOPATH=$(GOPATH) GOBIN=$(GOBIN) go run $(GOBASE)/src/
