@@ -26,6 +26,7 @@ loop:
 		fmt.Println("1) Print Menu")
 		fmt.Println("2) Add Item")
 		fmt.Println("q) Quit")
+		fmt.Printf("Enter choice: ")
 		choice, _ := in.ReadString('\n')
 
 		fmt.Printf("choice: %s", choice)
@@ -36,6 +37,7 @@ loop:
 		case "2":
 			Add()
 		case "q":
+			fmt.Printf("Goodbye!!!\n")
 			break loop
 		default:
 			fmt.Printf("Unknown option")
