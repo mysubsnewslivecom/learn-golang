@@ -21,3 +21,6 @@ vendor/
 go.work
 
 bin/*
+.env
+env/*
+.env
