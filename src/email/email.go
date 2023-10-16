@@ -10,4 +10,6 @@ type Email struct {
 	SendAddrs     []string `env:"EMAIL_SEND_ADDRS" long:"send-addrs" description:"addresses to send notifications to" yaml:"send_addrs"`
 	TLSSkipVerify bool     `env:"EMAIL_TLS_SKIP_VERIFY" long:"tls-skip-verify" description:"skip SMTP TLS certificate validation" yaml:"tls_skip_verify"`
 	MandatoryTLS  bool     `env:"EMAIL_MANDATORY_TLS" long:"mandatory-tls" description:"require TLS for SMTP connections. Defaults to opportunistic." yaml:"mandatory_tls"`
-} `group:"Email Options" namespace:"email" yaml:"email"`
+}
+
+// `group:"Email Options" namespace:"email" yaml:"email"`

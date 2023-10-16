@@ -1,8 +1,11 @@
 package utils
 
 import (
+	"encoding/json"
+	"fmt"
 	"log"
 	"os"
+	"strings"
 	"time"
 
 	"github.com/jessevdk/go-flags"
@@ -73,4 +76,33 @@ func LoadConfig(path string) (config DBConfig, err error) {
 
 	err = viper.Unmarshal(&config)
 	return
+}
+
+func testJSON() {
+	type client struct {
+		Hostname string `json:"Hostname"`
+		IP       string `json:"IP"`
+		MacAddr  string `json:"MacAddr"`
+	}
+
+	type connection struct {
+		Clients []*client `json:"Clients"`
+	}
+
+	line := "hostname 192.168.1.0 F0:F0:F0:F0:F0"
+
+	var clients []*client
+	for _, line := range strings.Split(line, "\n") {
+		if line != "" {
+			s := strings.Split(line, " ")
+			clients = append(clients, &client{Hostname: s[0], IP: s[1], MacAddr: s[2]})
+		}
+	}
+
+	p, _ := json.Marshal(connection{Clients: clients})
+	fmt.Printf("%s\n", p)
+}
+
+func Main() {
+	testJSON()
 }

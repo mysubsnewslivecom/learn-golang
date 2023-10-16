@@ -14,19 +14,24 @@ func GetAnything() {
 	type Headers struct {
 		Accept         string `json:"Accept"`
 		AcceptEncoding string `json:"Accept-Encoding"`
-		ContentType    string `json:"Content-Type"`
 		Host           string `json:"Host"`
 		UserAgent      string `json:"User-Agent"`
-		XAmznTraceId   string `json:"X-Amzn-Trace-Id"`
+		XAmznTraceID   string `json:"X-Amzn-Trace-Id"`
+	}
+
+	type Args struct {
 	}
 
 	type BodyResponse struct {
-		Json    string  `json:"json"`
-		Data    string  `json:"data"`
-		Origin  string  `json:"origin"`
-		Method  string  `json:"method"`
-		Url     string  `json:"url"`
-		Headers Headers `json:"headers"`
+		Args    Args        `json:"args"`
+		Data    string      `json:"data"`
+		Files   Args        `json:"files"`
+		Form    Args        `json:"form"`
+		Headers Headers     `json:"headers"`
+		JSON    interface{} `json:"json"`
+		Method  string      `json:"method"`
+		Origin  string      `json:"origin"`
+		URL     string      `json:"url"`
 	}
 
 	var sb strings.Builder
@@ -54,10 +59,6 @@ func GetAnything() {
 	if res.Body != nil {
 		defer res.Body.Close()
 	}
-	// body, _ := io.ReadAll(res.Body)
-
-	// fmt.Println(res)
-	// fmt.Println(string(body))
 
 	body, readErr := io.ReadAll(res.Body)
 	if readErr != nil {

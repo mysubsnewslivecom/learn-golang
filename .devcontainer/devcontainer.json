@@ -20,7 +20,8 @@
                 "github.vscode-pull-request-github", // Github interaction
                 "redhat.vscode-yaml", // Kubernetes, Drone syntax highlighting
                 "EditorConfig.EditorConfig",
-                "ms-vscode.makefile-tools"
+                "ms-vscode.makefile-tools",
+                "rangav.vscode-thunder-client"
             ],
             "settings": {
                 "files.eol": "\n",

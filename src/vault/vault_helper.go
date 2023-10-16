@@ -1,6 +1,7 @@
 package vault
 
 import (
+	"fmt"
 	"log"
 	"os"
 
@@ -67,4 +68,37 @@ func readConfig(path string) error {
 	log.Printf("Age: %d\n", person.Age)
 	log.Printf("Email: %s\n", person.Email)
 	return nil
+}
+
+func ReadConfigVault() string {
+	type Vault struct {
+		Token [3]string `yaml:"tokens"`
+		Addr  string    `yaml:"addr"`
+		// Name  string `yaml:"name"`
+	}
+
+	// data := make(map[interface{}]interface{})
+	data := make(map[string]Vault)
+
+	yfile, err := os.ReadFile("/workspaces/learn-golang/vault.yaml")
+	if err != nil {
+		log.Fatal(err)
+	}
+
+	var vault Vault
+	if err := yaml.Unmarshal(yfile, &data); err != nil {
+		panic(err)
+	}
+
+	log.Printf("Token: %v", data)
+	// for k, v := range data {
+
+	// 	fmt.Printf("%s -> %s\n", k, v)
+	// }
+	for _, v := range data {
+		addr := v.Addr
+		fmt.Printf("%v", addr)
+	}
+	return vault.Addr
+
 }

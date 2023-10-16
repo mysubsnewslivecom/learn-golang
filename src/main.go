@@ -38,9 +38,14 @@ func init() {
 
 	log.Printf("VaultApproleSecretIDFile: %v", env.VaultApproleSecretIDFile)
 
-	// value, ok := viper.Get(key).(string)
+	// var hcpClientId, hcpClientSecret = os.Getenv("HCP_CLIENT_ID"), os.Getenv("HCP_CLIENT_SECRET")
 
-	// return value
+	// var hcpAPIToken string
+	// if hcpAPIToken, envErr := os.LookupEnv("HCP_API_TOKEN"); !envErr {
+	// 	hcpAPIToken, err = vault.GetClientToken(hcpClientId, hcpClientSecret)
+	// }
+	// _ = os.Setenv("HCP_API_TOKEN", hcpAPIToken)
+
 }
 
 func main() {
@@ -74,12 +79,16 @@ func main() {
 	apis.GetAnything()
 
 	// organization.PhoneBook()
-	// fmt.Println("hello world")
 	// greetings.Greetings("Linux")
 	// apis.BoredApi()
 	// menu.MenuStart()
 	// log.Println(env.DatabaseHostname)
 	// vault.Unseal()
+	// vault.GetSecret()
+	// vault.ReadConfigVault()
 	// vault.ReadUser()
 	// vault.UsingToken()
+
+	utils.Main()
+
 }
