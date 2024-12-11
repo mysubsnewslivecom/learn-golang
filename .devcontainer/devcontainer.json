@@ -1,73 +1,78 @@
 {
-    "name": "golang",
-    "image": "mysubsnews/local/golang-devcontainer:0.1",
-    "runArgs": [
-        "--name=golang-devcontainer",
-        "--hostname=golang",
-        "--env-file=${localEnv:SECRET_HOME}/.env",
-        "--env-file=.env",
-        "--network=alpine-net"
-    ],
-    // "postCreateCommand": "go install -v golang.org/x/tools/gopls@latest && go mod download && go mod tidy",
-    "customizations": {
-        "vscode": {
-            "extensions": [
-                "golang.go",
-                "eamodio.gitlens", // IDE Git information
-                "davidanson.vscode-markdownlint",
-                "Gruntfuggly.todo-tree", // Highlights TODO comments
-                "vscode-icons-team.vscode-icons", // Better file extension icons
-                "github.vscode-pull-request-github", // Github interaction
-                "redhat.vscode-yaml", // Kubernetes, Drone syntax highlighting
-                "EditorConfig.EditorConfig",
-                "ms-vscode.makefile-tools",
-                "rangav.vscode-thunder-client"
-            ],
-            "settings": {
-                "files.eol": "\n",
-                "remote.extensionKind": {
-                    "ms-azuretools.vscode-docker": "workspace"
-                },
-                "go.useLanguageServer": true,
-                "[go]": {
-                    "editor.codeActionsOnSave": {
-                        "source.organizeImports": true
-                    }
-                },
-                "[go.mod]": {
-                    "editor.codeActionsOnSave": {
-                        "source.organizeImports": true
-                    }
-                },
-                "gopls": {
-                    "build.buildFlags": [
-                        "-tags",
-                        ""
-                    ],
-                    "usePlaceholders": false,
-                    "staticcheck": true
-                },
-                "go.lintTool": "golangci-lint",
-                "go.lintOnSave": "package",
-                "editor.formatOnSave": true,
-                "go.toolsEnvVars": {
-                    "CGO_ENABLED": "0"
-                },
-                "go.testEnvVars": {
-                    "CGO_ENABLED": "1"
-                },
-                "go.testFlags": [
-                    "-v",
-                    "-race"
-                ],
-                "go.testTimeout": "10s",
-                "go.coverOnSingleTest": true,
-                "go.coverOnSingleTestFile": true,
-                "go.coverOnTestPackage": true
-            }
-        }
+  "name": "learn-golang",
+  // "image": "golang-devcontainer:local",
+  "build": {
+    "dockerfile": "Dockerfile",
+    "args": {
+      "BASE_IMAGE_TAG": "1.23.4-bookworm"
     },
-    "mounts": [
-        "source=${localEnv:HOME}/.ssh,target=/home/linux/.ssh,type=bind,consistency=cached"
-    ]
+    "context": "."
+  },
+  "runArgs": [
+    "--name=learn-golang",
+    "--hostname=learn-golang",
+    "--env-file=${localEnv:SECRET_HOME}/.env",
+    "--network=alpine-net"
+  ],
+  // "postCreateCommand": "go install -v golang.org/x/tools/gopls@latest && go mod download && go mod tidy",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "golang.go",
+        "eamodio.gitlens", // IDE Git information
+        "davidanson.vscode-markdownlint",
+        "Gruntfuggly.todo-tree", // Highlights TODO comments
+        "vscode-icons-team.vscode-icons", // Better file extension icons
+        "github.vscode-pull-request-github", // Github interaction
+        "redhat.vscode-yaml", // Kubernetes, Drone syntax highlighting
+        "EditorConfig.EditorConfig",
+        "ms-vscode.makefile-tools"
+      ],
+      "settings": {
+        "files.eol": "\n",
+        "remote.extensionKind": {
+          "ms-azuretools.vscode-docker": "workspace"
+        },
+        "go.useLanguageServer": true,
+        "[go]": {
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+          }
+        },
+        "[go.mod]": {
+          "editor.codeActionsOnSave": {
+            "source.organizeImports": true
+          }
+        },
+        "gopls": {
+          "build.buildFlags": [
+            "-tags",
+            ""
+          ],
+          "usePlaceholders": false,
+          "staticcheck": true
+        },
+        "go.lintTool": "golangci-lint",
+        "go.lintOnSave": "package",
+        "editor.formatOnSave": true,
+        "go.toolsEnvVars": {
+          "CGO_ENABLED": "0"
+        },
+        "go.testEnvVars": {
+          "CGO_ENABLED": "1"
+        },
+        "go.testFlags": [
+          "-v",
+          "-race"
+        ],
+        "go.testTimeout": "10s",
+        "go.coverOnSingleTest": true,
+        "go.coverOnSingleTestFile": true,
+        "go.coverOnTestPackage": true
+      }
+    }
+  },
+  "mounts": [
+    "source=${localEnv:HOME}/.ssh,target=/home/linux/.ssh,type=bind,consistency=cached"
+  ]
 }
