@@ -4,6 +4,7 @@
   "build": {
     "dockerfile": "Dockerfile",
     "args": {
+      "BASE_IMAGE_NAME": "docker.io/golang",
       "BASE_IMAGE_TAG": "1.23.4-bookworm"
     },
     "context": "."
@@ -12,6 +13,7 @@
     "--name=learn-golang",
     "--hostname=learn-golang",
     "--env-file=${localEnv:SECRET_HOME}/.env",
+    "--env-file=.env",
     "--network=alpine-net"
   ],
   // "postCreateCommand": "go install -v golang.org/x/tools/gopls@latest && go mod download && go mod tidy",
@@ -36,12 +38,12 @@
         "go.useLanguageServer": true,
         "[go]": {
           "editor.codeActionsOnSave": {
-            "source.organizeImports": true
+            "source.organizeImports": "always"
           }
         },
         "[go.mod]": {
           "editor.codeActionsOnSave": {
-            "source.organizeImports": true
+            "source.organizeImports": "always"
           }
         },
         "gopls": {
@@ -72,6 +74,7 @@
       }
     }
   },
+  "initializeCommand": "test -f .env || touch .env",
   "mounts": [
     "source=${localEnv:HOME}/.ssh,target=/home/linux/.ssh,type=bind,consistency=cached"
   ]
