@@ -1,9 +1,16 @@
 {
-    "name": "golang",
-    "image": "golang-devcontainer:local",
+    "name": "learn-golang",
+    // "image": "golang-devcontainer:local",
+    "build": {
+        "dockerfile": "Dockerfile",
+        "args": {
+            "BASE_IMAGE_TAG": "1.23.4-bookworm"
+        },
+        "context": "."
+    },
     "runArgs": [
-        "--name=golang-devcontainer",
-        "--hostname=golang",
+        "--name=learn-golang",
+        "--hostname=learn-golang",
         "--env-file=${localEnv:SECRET_HOME}/.env",
         "--network=alpine-net"
     ],
